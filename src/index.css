@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 8%;
+    --foreground: 0 0% 95%;
+
+    --card: 0 0% 12%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 1 97% 44%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 90%;
+
+    --muted: 0 0% 18%;
+    --muted-foreground: 0 0% 55%;
+
+    --accent: 226 71% 40%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 1 97% 44%;
+
+    --radius: 0.625rem;
+
+    --sidebar-background: 0 0% 6%;
+    --sidebar-foreground: 0 0% 90%;
+    --sidebar-primary: 1 97% 44%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 15%;
+    --sidebar-accent-foreground: 0 0% 90%;
+    --sidebar-border: 0 0% 18%;
+    --sidebar-ring: 1 97% 44%;
+
+    /* Custom SpiderVerse tokens */
+    --spider-red: 1 97% 44%;
+    --spider-blue: 226 71% 40%;
+    --spider-dark: 0 0% 8%;
+    --spider-card: 0 0% 12%;
+    --glow-red: 0 0 20px hsl(1 97% 44% / 0.6);
+    --glow-blue: 0 0 20px hsl(226 71% 40% / 0.6);
+    --glow-red-blue: 0 0 15px hsl(1 97% 44% / 0.4), 0 0 30px hsl(226 71% 40% / 0.3);
+    --glass-bg: hsl(0 0% 10% / 0.6);
+    --glass-border: hsl(0 0% 100% / 0.1);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: 'Bebas Neue', sans-serif;
+  }
+}
+
+@layer utilities {
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+  }
+
+  .glow-red {
+    box-shadow: var(--glow-red);
+  }
+
+  .glow-blue {
+    box-shadow: var(--glow-blue);
+  }
+
+  .glow-red-blue {
+    box-shadow: var(--glow-red-blue);
+  }
+
+  .text-glow-red {
+    text-shadow: 0 0 20px hsl(1 97% 44% / 0.6), 0 0 40px hsl(1 97% 44% / 0.3);
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Spider web corner decoration */
+  .web-corner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle at 0 0, transparent 30%, hsl(0 0% 100% / 0.03) 31%, transparent 32%),
+      linear-gradient(45deg, transparent 48%, hsl(0 0% 100% / 0.04) 49%, transparent 50%),
+      linear-gradient(22deg, transparent 48%, hsl(0 0% 100% / 0.03) 49%, transparent 50%),
+      linear-gradient(67deg, transparent 48%, hsl(0 0% 100% / 0.03) 49%, transparent 50%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .web-corner-right::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle at 100% 0, transparent 30%, hsl(0 0% 100% / 0.03) 31%, transparent 32%),
+      linear-gradient(-45deg, transparent 48%, hsl(0 0% 100% / 0.04) 49%, transparent 50%),
+      linear-gradient(-22deg, transparent 48%, hsl(0 0% 100% / 0.03) 49%, transparent 50%),
+      linear-gradient(-67deg, transparent 48%, hsl(0 0% 100% / 0.03) 49%, transparent 50%);
+    pointer-events: none;
+    z-index: 1;
+  }
+}
+
+/* Crawling spider animation */
+@keyframes spider-crawl {
+  0% { transform: translateX(-20px) translateY(0) rotate(0deg); }
+  25% { transform: translateX(40px) translateY(-5px) rotate(10deg); }
+  50% { transform: translateX(100px) translateY(2px) rotate(-5deg); }
+  75% { transform: translateX(160px) translateY(-3px) rotate(8deg); }
+  100% { transform: translateX(220px) translateY(0) rotate(0deg); }
+}
+
+@keyframes web-shoot {
+  0% { width: 0; opacity: 0; }
+  50% { width: 30px; opacity: 1; }
+  100% { width: 0; opacity: 0; }
+}
+
+@keyframes spider-logo-morph {
+  0% { transform: scale(0) rotate(-180deg); opacity: 0; }
+  60% { transform: scale(1.2) rotate(10deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-spider-crawl {
+  animation: spider-crawl 12s linear infinite;
+}
+
+.animate-spider-logo {
+  animation: spider-logo-morph 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
